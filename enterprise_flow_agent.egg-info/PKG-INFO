@@ -6,6 +6,9 @@ Requires-Python: <3.14,>=3.13
 Requires-Dist: fastapi
 Requires-Dist: uvicorn[standard]
 Requires-Dist: pydantic-settings
+Requires-Dist: sqlalchemy<2.2,>=2.0
+Requires-Dist: alembic<2.0,>=1.16
+Requires-Dist: psycopg[binary]<4.0,>=3.2
 Provides-Extra: dev
 Requires-Dist: pytest; extra == "dev"
 Requires-Dist: httpx; extra == "dev"

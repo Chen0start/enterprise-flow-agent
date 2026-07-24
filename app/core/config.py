@@ -10,7 +10,8 @@ class Settings(BaseSettings):
     app_version: str = "0.1.0"
     environment: str = "development"
     database_url: str = (
-        "postgresql+psycopg://postgres:postgres@localhost:5432/enterprise_flow"
+        "postgresql+psycopg://enterprise_flow_user:change_me"
+        "@localhost:5432/enterprise_flow"
     )
 
     model_config = SettingsConfigDict(
@@ -24,5 +25,4 @@ class Settings(BaseSettings):
 @lru_cache
 def get_settings() -> Settings:
     """Return one cached settings instance."""
-
     return Settings()
