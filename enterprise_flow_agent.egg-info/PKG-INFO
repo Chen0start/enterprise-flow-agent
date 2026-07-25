@@ -11,6 +11,8 @@ Requires-Dist: alembic<2.0,>=1.16
 Requires-Dist: psycopg[binary]<4.0,>=3.2
 Requires-Dist: pwdlib[argon2]<1.0,>=0.3
 Requires-Dist: email-validator<3.0,>=2.3
+Requires-Dist: PyJWT<3.0,>=2.10
+Requires-Dist: python-multipart<1.0,>=0.0.20
 Provides-Extra: dev
 Requires-Dist: pytest; extra == "dev"
 Requires-Dist: httpx; extra == "dev"

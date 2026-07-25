@@ -6,6 +6,8 @@ alembic<2.0,>=1.16
 psycopg[binary]<4.0,>=3.2
 pwdlib[argon2]<1.0,>=0.3
 email-validator<3.0,>=2.3
+PyJWT<3.0,>=2.10
+python-multipart<1.0,>=0.0.20
 
 [dev]
 pytest

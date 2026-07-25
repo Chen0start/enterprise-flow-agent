@@ -1,4 +1,4 @@
-from sqlalchemy import func, select
+from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session
 
 from app.models.user import User
@@ -8,13 +8,19 @@ class UserRepository:
     """Database access operations for users."""
 
     @staticmethod
-    def get_by_id(db: Session, user_id: int) -> User | None:
+    def get_by_id(
+        db: Session,
+        user_id: int,
+    ) -> User | None:
         """Find a user by primary key."""
 
         return db.get(User, user_id)
 
     @staticmethod
-    def get_by_email(db: Session, email: str) -> User | None:
+    def get_by_email(
+        db: Session,
+        email: str,
+    ) -> User | None:
         """Find a user by normalized email address."""
 
         statement = select(User).where(User.email == email)
@@ -22,10 +28,31 @@ class UserRepository:
         return db.scalar(statement)
 
     @staticmethod
-    def get_by_username(db: Session, username: str) -> User | None:
+    def get_by_username(
+        db: Session,
+        username: str,
+    ) -> User | None:
         """Find a user by normalized username."""
 
         statement = select(User).where(User.username == username)
+
+        return db.scalar(statement)
+
+    @staticmethod
+    def get_by_login(
+        db: Session,
+        login: str,
+    ) -> User | None:
+        """Find a user by username or email."""
+
+        normalized_login = login.strip().lower()
+
+        statement = select(User).where(
+            or_(
+                User.username == normalized_login,
+                User.email == normalized_login,
+            )
+        )
 
         return db.scalar(statement)
 
@@ -51,7 +78,10 @@ class UserRepository:
         return db.scalar(statement) or 0
 
     @staticmethod
-    def add(db: Session, user: User) -> User:
+    def add(
+        db: Session,
+        user: User,
+    ) -> User:
         """Add a user to the current transaction."""
 
         db.add(user)

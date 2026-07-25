@@ -12,3 +12,11 @@ class ResourceNotFoundError(AppError):
 
 class ResourceConflictError(AppError):
     """Raised when a resource conflicts with existing data."""
+
+
+class AuthenticationError(AppError):
+    """Raised when user credentials are invalid."""
+
+
+class InactiveUserError(AppError):
+    """Raised when an inactive user attempts to authenticate."""

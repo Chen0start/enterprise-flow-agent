@@ -11,21 +11,24 @@ EnterpriseFlow Agent 是一个面向企业知识查询和业务流程操作的�
 - 权限控制和操作审计；
 - RAG 与 Agent 效果评测。
 
+
 ## 当前状态
 
-项目正在开发中。
-
-当前阶段：用户管理后端开发。
+当前阶段：用户认证与权限控制。
 
 已实现：
 
-- FastAPI 应用骨架；
-- PostgreSQL 数据库连接；
-- SQLAlchemy 用户模型；
+- FastAPI 分层后端架构；
+- PostgreSQL 与 SQLAlchemy 数据访问；
 - Alembic 数据库迁移；
 - 用户创建与查询接口；
 - Argon2 密码哈希；
-- 独立测试数据库与接口测试。
+- OAuth2 Password 登录；
+- JWT Access Token；
+- 当前用户识别；
+- 管理员权限控制；
+- 独立测试数据库；
+- 接口集成测试。
 
 ## 技术栈规划
 
