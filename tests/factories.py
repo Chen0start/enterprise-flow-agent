@@ -2,6 +2,7 @@ from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
 
 from app.core.security import hash_password
+from app.models.project import Project, ProjectMember
 from app.models.user import User
 
 
@@ -53,3 +54,56 @@ def get_auth_headers(
     return {
         "Authorization": f"Bearer {token}",
     }
+
+
+def create_test_project(
+    db: Session,
+    *,
+    owner: User,
+    name: str = "Alpha Project",
+    status: str = "active",
+) -> Project:
+    """Insert a project with its owner membership."""
+
+    project = Project(
+        name=name,
+        description="Integration test project",
+        status=status,
+        owner_id=owner.id,
+        created_by_id=owner.id,
+    )
+
+    db.add(project)
+    db.flush()
+
+    membership = ProjectMember(
+        project_id=project.id,
+        user_id=owner.id,
+        project_role="owner",
+    )
+
+    db.add(membership)
+    db.flush()
+
+    return project
+
+
+def add_test_project_member(
+    db: Session,
+    *,
+    project: Project,
+    user: User,
+    project_role: str = "member",
+) -> ProjectMember:
+    """Insert a membership for an integration test."""
+
+    membership = ProjectMember(
+        project_id=project.id,
+        user_id=user.id,
+        project_role=project_role,
+    )
+
+    db.add(membership)
+    db.flush()
+
+    return membership

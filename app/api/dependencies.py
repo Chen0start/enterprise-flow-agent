@@ -76,3 +76,25 @@ def require_admin(
         )
 
     return current_user
+
+
+def require_project_creator(
+    current_user: Annotated[
+        User,
+        Depends(get_current_user),
+    ],
+) -> User:
+    """Require permission to create enterprise projects."""
+
+    allowed_roles = {
+        UserRole.ADMIN.value,
+        UserRole.PROJECT_MANAGER.value,
+    }
+
+    if current_user.role not in allowed_roles:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail=("Project manager or administrator permission required"),
+        )
+
+    return current_user

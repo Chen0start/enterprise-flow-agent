@@ -9,7 +9,7 @@ from app.core.config import get_settings
 from app.db.base import Base
 from app.db.session import get_db
 from app.main import app
-from app.models import User  # noqa: F401
+from app.models import Project, ProjectMember, User  # noqa: F401
 
 
 settings = get_settings()

@@ -14,21 +14,22 @@ EnterpriseFlow Agent 是一个面向企业知识查询和业务流程操作的�
 
 ## 当前状态
 
-当前阶段：用户认证与权限控制。
+当前阶段：企业项目与成员管理。
 
 已实现：
 
 - FastAPI 分层后端架构；
 - PostgreSQL 与 SQLAlchemy 数据访问；
 - Alembic 数据库迁移；
-- 用户创建与查询接口；
 - Argon2 密码哈希；
 - OAuth2 Password 登录；
 - JWT Access Token；
-- 当前用户识别；
-- 管理员权限控制；
+- 用户管理与管理员权限控制；
+- 项目创建与项目查询；
+- 项目成员关系管理；
+- 项目级 Owner、Manager、Member 权限；
 - 独立测试数据库；
-- 接口集成测试。
+- API 集成测试。。
 
 ## 技术栈规划
 

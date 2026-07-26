@@ -20,3 +20,7 @@ class AuthenticationError(AppError):
 
 class InactiveUserError(AppError):
     """Raised when an inactive user attempts to authenticate."""
+
+
+class PermissionDeniedError(AppError):
+    """Raised when a user lacks permission for an operation."""
